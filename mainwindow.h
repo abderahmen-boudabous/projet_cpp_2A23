@@ -2,6 +2,10 @@
 #define MAINWINDOW_H
 #include "client.h"
 #include <QMainWindow>
+#include "arduino.h"
+
+
+
 
 namespace Ui {
 class MainWindow;
@@ -53,19 +57,23 @@ private slots:
 
     void on_tri_age_clicked();
 
-    void on_pushButton_6_clicked();
-
     void on_imprimer_clicked();
 
     void on_socket_clicked();
 
-    void sendMail();
+    void on_pushButton_6_clicked();
 
-    void mailSent(QString status);
+
+
+
+
+    void on_Login_clicked();
 
 private:
     Ui::MainWindow *ui;
     client c;
+    Arduino A;
+
 
 
 };

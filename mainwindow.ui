@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1326</width>
-    <height>799</height>
+    <width>1320</width>
+    <height>776</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>1331</width>
-      <height>761</height>
+      <width>1651</width>
+      <height>821</height>
      </rect>
     </property>
     <property name="toolTip">
@@ -38,7 +38,7 @@
 </string>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -233,10 +233,10 @@
       <widget class="QLabel" name="label_21">
        <property name="geometry">
         <rect>
-         <x>-10</x>
-         <y>-30</y>
-         <width>1541</width>
-         <height>821</height>
+         <x>0</x>
+         <y>0</y>
+         <width>1421</width>
+         <height>801</height>
         </rect>
        </property>
        <property name="text">
@@ -949,70 +949,8 @@
     </widget>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">
-      <string>envoyer_un_mail</string>
+      <string>controle_gate</string>
      </attribute>
-     <widget class="QLineEdit" name="rcpt">
-      <property name="geometry">
-       <rect>
-        <x>160</x>
-        <y>560</y>
-        <width>430</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>boudabousabderrahmen@gmail.com</string>
-      </property>
-     </widget>
-     <widget class="QPlainTextEdit" name="msg">
-      <property name="geometry">
-       <rect>
-        <x>158</x>
-        <y>246</y>
-        <width>531</width>
-        <height>301</height>
-       </rect>
-      </property>
-      <property name="plainText">
-       <string>Hello </string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="sendBtn">
-      <property name="geometry">
-       <rect>
-        <x>600</x>
-        <y>560</y>
-        <width>91</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton::hover
-{
-	background-color: qlineargradient(spread:pad, x1:0, y1:0.511, x2:1, y2:0.511, stop:0 rgba(0, 207, 179, 255),stop:1 rgb(108, 135, 255));
-
-}</string>
-      </property>
-      <property name="text">
-       <string>envoyer</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_8">
-      <property name="geometry">
-       <rect>
-        <x>2</x>
-        <y>-36</y>
-        <width>1321</width>
-        <height>761</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap>../Webp.net-resizeimage (3).jpg</pixmap>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_23">
       <property name="geometry">
        <rect>
@@ -1049,164 +987,136 @@
        <string>Retour</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="port">
+     <widget class="QPushButton" name="pushButton_6">
       <property name="geometry">
        <rect>
-        <x>156</x>
-        <y>117</y>
-        <width>531</width>
-        <height>22</height>
+        <x>750</x>
+        <y>250</y>
+        <width>171</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="text">
-       <string>587</string>
+       <string>Open the gate</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="uname">
+     <widget class="QGroupBox" name="groupBox_2">
       <property name="geometry">
        <rect>
-        <x>156</x>
-        <y>147</y>
-        <width>531</width>
-        <height>22</height>
+        <x>400</x>
+        <y>200</y>
+        <width>391</width>
+        <height>251</height>
        </rect>
       </property>
-      <property name="text">
-       <string>boudabousabderrahmen@gmail.com</string>
+      <property name="title">
+       <string/>
       </property>
+      <widget class="QPushButton" name="Login">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>191</y>
+         <width>331</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Open the gate</string>
+       </property>
+      </widget>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>111</y>
+         <width>341</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="label_10">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#ff00ff;&quot;&gt;Password&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_password">
+          <property name="echoMode">
+           <enum>QLineEdit::Password</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>30</y>
+         <width>341</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="label_9">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#ff00ff;&quot;&gt;UserName&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_username"/>
+        </item>
+       </layout>
+      </widget>
+      <zorder>layoutWidget</zorder>
+      <zorder>Login</zorder>
+      <zorder>layoutWidget</zorder>
      </widget>
-     <widget class="QLineEdit" name="paswd">
+     <widget class="QLabel" name="label_8">
       <property name="geometry">
        <rect>
-        <x>156</x>
-        <y>177</y>
-        <width>531</width>
-        <height>22</height>
+        <x>-50</x>
+        <y>-20</y>
+        <width>1441</width>
+        <height>781</height>
        </rect>
       </property>
       <property name="text">
-       <string>kfhyyzmdruavornu</string>
+       <string/>
       </property>
-     </widget>
-     <widget class="QLineEdit" name="server">
-      <property name="geometry">
-       <rect>
-        <x>156</x>
-        <y>87</y>
-        <width>531</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>smtp.gmail.com</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_9">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>80</y>
-        <width>141</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600; color:#ff00ff;&quot;&gt;Smtp server :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_10">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>110</y>
-        <width>141</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600; color:#ff00ff;&quot;&gt;Server port :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <property name="pixmap">
+       <pixmap>../east_deck_exiting_0.v1 (1).v1.png</pixmap>
       </property>
      </widget>
      <widget class="QLabel" name="label_11">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>170</y>
-        <width>141</width>
-        <height>31</height>
+        <x>400</x>
+        <y>200</y>
+        <width>391</width>
+        <height>251</height>
        </rect>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600; color:#ff00ff;&quot;&gt;password :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../bg.png</pixmap>
       </property>
      </widget>
-     <widget class="QLabel" name="label_25">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>210</y>
-        <width>141</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600; color:#ff00ff;&quot;&gt;subject :&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_27">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>140</y>
-        <width>141</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600; color:#ff00ff;&quot;&gt;user-name :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="subject">
-      <property name="geometry">
-       <rect>
-        <x>160</x>
-        <y>210</y>
-        <width>531</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>solde</string>
-      </property>
-     </widget>
+     <zorder>pushButton_6</zorder>
      <zorder>label_8</zorder>
-     <zorder>rcpt</zorder>
-     <zorder>msg</zorder>
-     <zorder>sendBtn</zorder>
      <zorder>label_23</zorder>
      <zorder>pushButton_5</zorder>
-     <zorder>port</zorder>
-     <zorder>uname</zorder>
-     <zorder>paswd</zorder>
-     <zorder>server</zorder>
-     <zorder>label_9</zorder>
-     <zorder>label_10</zorder>
      <zorder>label_11</zorder>
-     <zorder>label_25</zorder>
-     <zorder>label_27</zorder>
-     <zorder>subject</zorder>
+     <zorder>groupBox_2</zorder>
     </widget>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1326</width>
-     <height>26</height>
-    </rect>
-   </property>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">

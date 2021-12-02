@@ -1,8 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "client.h"
-#include "smtp.h"
-#include "smtp.cpp"
 #include <QMessageBox>
 #include <QApplication>
 #include <QSqlQuery>
@@ -14,15 +12,17 @@
 #include <string>
 #include <QPrintDialog>
 #include <QPrinter>
-
+#include <QTextDocument>
 #include <QString>
 #include <QDialog>
-#include "smtp.h"
+#include <QMessageBox>
 #include <QtWidgets/QMessageBox>
 #include <QFileDialog>
 #include <QMainWindow>
 #include <QtCore/QCoreApplication>
 #include <QMainWindow>
+#include <QStackedWidget>
+
 
 
 
@@ -32,8 +32,21 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->id->setValidator(new QIntValidator(0,99999999,this));
-    ui->age->setValidator(new QIntValidator(0,99,this));
+    /**********************************************************/
+    int ret=A.connect_arduino(); // lancer la connexion à arduino
+        switch(ret){
+        case(0):qDebug()<< "arduino is available and connected to : "<< A.getarduino_port_name();
+            break;
+        case(1):qDebug() << "arduino is available but not connected to :" <<A.getarduino_port_name();
+           break;
+        case(-1):qDebug() << "arduino is not available";
+        }
+         QObject::connect(A.getserial(),SIGNAL(readyRead()),this,SLOT(update_label())); // permet de lancer
+         //le slot update_label suite à la reception du signal readyRead (reception des données).
+
+
+  /*  ui->id->setValidator(new QIntValidator(0,99999999,this));
+    ui->age->setValidator(new QIntValidator(0,99,this));*/
     ui->afficher_2->setModel(c.afficher());
 }
 
@@ -170,7 +183,7 @@ void MainWindow::on_excel_clicked()
                table = ui->afficher_2;
 
                QString filters("xlsx files (.xlsx);;All files (.*)");
-               QString defaultFilter("CSV files (*.xlsx)");
+               QString defaultFilter("xlsx files (*.xlsx)");
                QString fileName = QFileDialog::getSaveFileName(0, "Save file", QCoreApplication::applicationDirPath(),
                                   filters, &defaultFilter);
                QFile file(fileName);
@@ -356,25 +369,29 @@ void MainWindow::on_imprimer_clicked()
 }
 
 
-void MainWindow::sendMail()
+
+
+void MainWindow::on_pushButton_6_clicked()
 {
-    Smtp* smtp = new Smtp(ui->uname->text(), ui->paswd->text(), ui->server->text(), ui->port->text().toInt());
-    connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
-/*
-    if( !files.isEmpty() )
-        smtp->sendMail(ui->uname->text(), ui->rcpt->text() , ui->subject->currentText(),ui->msg->toPlainText(), files );
-    else
-        smtp->sendMail(ui->uname->text(), ui->rcpt->text() , ui->subject->currentText(),ui->msg->toPlainText());*/
+    A.write_to_arduino("1");
+
 }
 
-void MainWindow::mailSent(QString status)
+void MainWindow::on_Login_clicked()
 {
-    if(status == "Message sent")
-        QMessageBox::warning( 0, tr( "Qt Simple SMTP client" ), tr( "Message sent!\n\n" ) );
-}
 
-void MainWindow::on_socket_clicked()
-{
-    connect(ui->sendBtn,SIGNAL(clicked()),this,SLOT(sendMail()));
+               QString username = ui->lineEdit_username->text();
+               QString password = ui->lineEdit_password->text();
+
+               if (username == "admin" && password == "admin") {
+                   QMessageBox::information(this, "Login", "Username and password are correct and gate will open ");
+              //  ui->stackedWidget->setCurrentIndex(0);
+
+                   MainWindow::on_pushButton_6_clicked();
+
+               }
+               else {
+                   QMessageBox::warning(this, "Login", "Username and password are not correct and the gate will not open");
+               }
 
 }
