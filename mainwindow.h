@@ -4,6 +4,12 @@
 
 #include <QMainWindow>
 
+
+#include<QtCharts/QPieSeries>
+#include <QChartView>
+
+#include <QChart>
+
 namespace Ui {
 class MainWindow;
 }

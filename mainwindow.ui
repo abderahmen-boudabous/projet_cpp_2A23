@@ -306,34 +306,9 @@
        <pixmap>../3.png</pixmap>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_3">
-      <property name="geometry">
-       <rect>
-        <x>330</x>
-        <y>350</y>
-        <width>113</width>
-        <height>20</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton">
-      <property name="geometry">
-       <rect>
-        <x>480</x>
-        <y>350</y>
-        <width>75</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>modifier</string>
-      </property>
-     </widget>
      <zorder>label_32</zorder>
      <zorder>tab_equipement</zorder>
      <zorder>label_35</zorder>
-     <zorder>lineEdit_3</zorder>
-     <zorder>pushButton</zorder>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -479,16 +454,6 @@
        <pixmap>../3.png</pixmap>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_2">
-      <property name="geometry">
-       <rect>
-        <x>402</x>
-        <y>120</y>
-        <width>181</width>
-        <height>20</height>
-       </rect>
-      </property>
-     </widget>
      <zorder>label_29</zorder>
      <zorder>label_2</zorder>
      <zorder>le__prix</zorder>
@@ -500,7 +465,6 @@
      <zorder>le__nom</zorder>
      <zorder>pb_modifier</zorder>
      <zorder>label_30</zorder>
-     <zorder>lineEdit_2</zorder>
     </widget>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
@@ -685,8 +649,8 @@
      <widget class="QLabel" name="label_10">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>-20</y>
+        <x>-10</x>
+        <y>-10</y>
         <width>1071</width>
         <height>571</height>
        </rect>

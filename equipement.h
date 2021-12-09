@@ -38,9 +38,9 @@ public:
     QSqlQueryModel *tri();
     QSqlQueryModel *tri1();
     QSqlQueryModel *tri2();
-    int stati1();
+    /*int stati1();
     int stati2();
-    int nb_total();
+    int nb_total();*/
 
 
 

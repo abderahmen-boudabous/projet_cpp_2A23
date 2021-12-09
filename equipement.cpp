@@ -157,7 +157,11 @@ QSqlQueryModel * Equipement::tri2()
     return model;
 
 }
-int Equipement::stati1()
+
+
+
+
+/*int Equipement::stati1()
 {
     QSqlQuery query;
     int count=0 ;
@@ -200,4 +204,4 @@ int Equipement::nb_total()
     }
 
 return(count);
-}
+}*/

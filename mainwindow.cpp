@@ -18,8 +18,29 @@
 #include <QPainter>
 #include <QDesktopServices>
 #include <QPieSeries>
+#include <QChartView>
+#include <QChart>
+#include <QMessageBox>
+#include <QIntValidator>
+#include<QSqlQuery>
+#include<QDebug>
+#include<QWidget>
+#include<QApplication>
+#include<QFileDialog>
+#include<QDesktopServices>
+#include<QUrl>
+#include <QString>
+#include<QPixmap>
+#include <QtCharts/QBarSeries>
+#include <QtCharts/QBarSet>
+#include <QtCharts/QLegend>
+#include <QtCharts>
+#include <QtCharts/QPieSeries>
+#include <QtCharts/QPieSlice>
 #include <QPieSlice>
-
+#include <QPieSeries>
+#include <QtCharts/QChartView>
+#include <QtCharts/QChartView>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -216,7 +237,7 @@ void MainWindow::on_pb_PDF_clicked()
                                      painter.setPen(Qt::black);
                                      painter.setFont(QFont("Arial", 50));
                                      painter.drawRect(1000,200,6500,2000);
-                                     painter.drawPixmap(QRect(7600,70,2000,2600),QPixmap(":/new/prefix1/detention.jpg"));
+                                     painter.drawPixmap(QRect(7600,70,2000,2600),QPixmap("C:/Users/User/OneDrive/Bureau/mohamed aziz rezgui/3.png"));
                                      painter.drawRect(0,3000,9600,500);
                                      painter.setFont(QFont("Arial", 9));
                                      painter.setPen(Qt::blue);
@@ -264,18 +285,48 @@ void MainWindow::on_pb_PDF_clicked()
 
 
 
-void MainWindow::on_pb_stat_clicked()
+void MainWindow:: on_pb_stat_clicked()
 {
 
-        Equipement E;
-        ui->label_11->setNum(((E.stati1())*100/E.nb_total()));
-        ui->label_21->setNum(((E.stati2())*100/E.nb_total()));
+        QSqlQueryModel * model= new QSqlQueryModel();
+                                model->setQuery("select * from equipement where panne = 0 ");
+                                float e=model->rowCount();
+                                model->setQuery("select * from equipement where panne = 1 ");
+                                float ee=model->rowCount();
 
-        ui->label_23->setText(" % des equipement en panne:");
-        ui->label_25->setText(" % des equipement marche:");
+                                float total=e+ee;
+                                QString a=QString("0: "+QString::number((e*100)/total,'f',2)+"%" );
+                                QString b=QString("1: "+QString::number((ee*100)/total,'f',2)+"%" );
 
+                                QPieSeries *series = new QPieSeries();
+                                series->append(a,e);
+                                series->append(b,ee);
 
+                        if (e!=0)
+                        {QPieSlice *slice = series->slices().at(0);
+                         slice->setLabelVisible();
+                         slice->setPen(QPen());}
+                        if ( ee!=0)
+                        {
+                                 // Add label, explode and define brush for 2nd slice
+                                 QPieSlice *slice1 = series->slices().at(1);
+                                 //slice1->setExploded();
+                                 slice1->setLabelVisible();
+                        }
+
+                                // Create the chart widget
+                                QChart *chart = new QChart();
+                                // Add data to chart with title and hide legend
+                                chart->addSeries(series);
+                                chart->setTitle("Pourcentage panne :  "+ QString::number(total));
+                                chart->legend()->hide();
+                                // Used to display the chart
+                                QChartView *chartView = new QChartView(chart);
+                                chartView->setRenderHint(QPainter::Antialiasing);
+                                chartView->resize(1000,500);
+                                chartView->show();
 }
+
 void MainWindow::on_pb_image_clicked()
 {
 
