@@ -22,7 +22,19 @@
 #include <QtCore/QCoreApplication>
 #include <QMainWindow>
 #include <QStackedWidget>
+#include <QtCharts/QBarSeries>
+#include <QtCharts/QBarSet>
+#include <QtCharts/QLegend>
+#include <QtCharts>
+#include <QtCharts/QPieSeries>
+#include <QtCharts/QPieSlice>
+#include <QPieSlice>
+#include <QPieSeries>
+#include <QtCharts/QChartView>
+#include <QtCharts/QChartView>
 #include "equipement.h"
+#include"ticket.h"
+#include"notification1.h"
 //#include <QPieSeries>
 //#include <QPieSlice>
 
@@ -728,3 +740,324 @@ if(A.read_from_arduino()=="5")
 
 
 
+
+void MainWindow::on_rechPB_clicked()
+{
+    QMessageBox msgBox;
+
+            QSqlQuery query;
+            int code=0,quantite=0;
+            QString datee="",dates="",marque="";
+
+
+            int critere=ui->comboRech->currentIndex();
+            if(critere==0)
+            {
+
+                code=ui->leRech->text().toInt();
+
+
+                query.prepare("SELECT * FROM ticket WHERE id =:id " );
+                query.bindValue(":id", code);
+                query.exec();
+
+
+
+
+                while(query.next())
+               {
+                    code=query.value(0).toInt();
+
+                    marque=query.value(1).toString();
+                    datee=query.value(2).toString();
+                    //dates=query.value(3).toString();
+                    quantite=query.value(3).toInt();
+
+               }
+            }
+            else if(critere==1)
+            {
+                marque=ui->leRech->text();
+
+                //d=C1.getId();
+
+                //x.chercherClient(critere);
+                query.prepare("SELECT * FROM ticket WHERE type =:type " );
+                query.bindValue(":type", marque);
+                query.exec();
+
+
+
+
+                while(query.next())
+               {
+                    code=query.value(0).toInt();
+
+                    marque=query.value(1).toString();
+                    datee=query.value(2).toString();
+
+                    quantite=query.value(3).toInt();
+               }
+            }
+            else
+            {
+                quantite=ui->leRech->text().toUInt();
+
+
+                query.prepare("SELECT * FROM ticket WHERE prix=:prix " );
+                query.bindValue(":prix", quantite);
+                query.exec();
+
+
+
+
+                while(query.next())
+               {
+                    code=query.value(0).toInt();
+
+                    marque=query.value(1).toString();
+                    datee=query.value(2).toString();
+
+                    quantite=query.value(3).toInt();
+               }
+            }
+            if(datee=="")
+            {
+
+
+                  QMessageBox::critical(nullptr, QObject::tr("ticket not found"),
+                           QObject::tr("try again"), QMessageBox::Cancel);
+
+
+            }
+            else
+            {
+
+                msgBox.setText("FOUND");
+                ui->lcodeR->setText(QString::number(code));
+                ui->marqueRech->setText(marque);
+                ui->le_datee->setText(datee);
+
+                ui->lquantite->setText(QString::number(quantite));
+                msgBox.exec();
+            }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+void MainWindow::on_pb_ajouter_2_clicked()
+{
+    int code=ui->le_code->text().toInt();
+    QString marque=ui->le_marque->text();
+    QString datee=ui->le_datee->text();
+    //QString dates=ui->le_dates->text();
+    int quantite=ui->le_quantite->text().toInt();
+
+    ticket s (code,marque,datee,quantite);
+
+    {ticket (code,marque,datee,quantite);
+            bool test=s.ajouter();
+
+            if(test)
+            {  QMessageBox::information(nullptr, QObject::tr("Ajouter un ticket"),
+                                        QObject::tr("ticket ajoute\n"
+                                                    "Cliquez sur cancel Pour Quitter."), QMessageBox::Cancel);
+            ui->tab_ticket->setModel(s.afficher());
+            }
+            else
+            {  QMessageBox::warning(nullptr, QObject::tr("erreur"),
+                                    QObject::tr("Echec de l'ajout.\n"
+                                                "Click Cancel to exit."), QMessageBox::Cancel);}
+
+        }
+    QSqlQuery query;
+     query.prepare("select prix from ticket where prix < 6");
+     query.exec();
+     query.next();
+     int q=query.value(0).toInt();
+     QString nom=query.value(0).toString();
+     if(q<=6)
+     {
+        notification1 n;
+        n.notification_system();
+     }
+}
+
+void MainWindow::on_deleteRech_clicked()
+{
+
+        ticket s;
+        int code=ui->lcodeR->text().toInt();
+        bool test=s.supprimer(code);
+        ui->tab_ticket->setModel(s.afficher());
+        if(test)
+        {
+            QMessageBox::information(nullptr,QObject::tr("ok"),QObject ::tr("suppression effectue\n"
+                                                                            "Click Cancel to exit"),QMessageBox::Cancel);
+        }
+        else
+        {
+            QMessageBox::critical(nullptr,QObject::tr("not ok"),QObject ::tr("suppression non effectue\n"
+                                                                            "Click Cancel to exit"),QMessageBox::Cancel);
+        }
+
+}
+
+void MainWindow::on_modifyRech_clicked()
+{
+
+}
+
+void MainWindow::on_lineEdit_4_textChanged(const QString &arg1)
+{
+    QString ch = arg1;
+
+                     if (ch=="")
+                     {
+                         ui->tab_ticket->setModel(s.afficher());
+                     }
+                     else {
+                       ui->tab_ticket->setModel(s.recherchercode(ch)) ;
+    }
+}
+
+void MainWindow::on_lineEdit_5_textChanged(const QString &arg1)
+{
+    QString ch = arg1;
+
+                     if (ch=="")
+                     {
+                         ui->tab_ticket->setModel(s.afficher());
+                     }
+                     else {
+                       ui->tab_ticket->setModel(s.recherchertype(ch)) ;
+    }
+}
+
+void MainWindow::on_pushButton_10_clicked()
+{
+    ui->tab_ticket->setModel(s.tri());
+
+}
+
+void MainWindow::on_pushButton_12_clicked()
+{
+    ui->tab_ticket->setModel(s.trim());
+
+}
+
+void MainWindow::on_pushButton_13_clicked()
+{
+    ui->tab_ticket->setModel(s.trie());
+
+}
+
+void MainWindow::on_pushButton_statistique_clicked()
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+                            model->setQuery("select * from ticket where type = 'pour adultes' ");
+                            float e=model->rowCount();
+                            model->setQuery("select * from ticket where type = 'pour enfants' ");
+                            float ee=model->rowCount();
+                            model->setQuery("select * from ticket where type = 'VIP' ");
+                            float eee=model->rowCount();
+                            float total=e+ee+eee;
+                            QString a=QString("pour adultes "+QString::number((e*100)/total,'f',2)+"%" );
+                            QString b=QString("pour enfants"+QString::number((ee*100)/total,'f',2)+"%" );
+                            QString c=QString("VIP"+QString::number((eee*100)/total,'f',2)+"%" );
+                            QPieSeries *series = new QPieSeries();
+                            series->append(a,e);
+                            series->append(b,ee);
+                            series->append(c,eee);
+                    if (e!=0)
+                    {QPieSlice *slice = series->slices().at(0);
+                     slice->setLabelVisible();
+                     slice->setPen(QPen());}
+                    if ( ee!=0)
+                    {
+                             // Add label, explode and define brush for 2nd slice
+                             QPieSlice *slice1 = series->slices().at(1);
+                             //slice1->setExploded();
+                             slice1->setLabelVisible();
+                    }
+                    if(eee!=0)
+                    {
+                             // Add labels to rest of slices
+                             QPieSlice *slice2 = series->slices().at(2);
+                             //slice1->setExploded();
+                             slice2->setLabelVisible();
+                    }
+                            // Create the chart widget
+                            QChart *chart = new QChart();
+                            // Add data to chart with title and hide legend
+                            chart->addSeries(series);
+                            chart->setTitle("Pourcentage type : nombre de type: "+ QString::number(total));
+                            chart->legend()->hide();
+                            // Used to display the chart
+                            QChartView *chartView = new QChartView(chart);
+                            chartView->setRenderHint(QPainter::Antialiasing);
+                            chartView->resize(1000,500);
+                            chartView->show();
+}
+
+void MainWindow::on_pb_update_clicked()
+{
+    int code=ui->le_code_modif->text().toInt();
+        QString marque=ui->le_marque_modif->text();
+            QString datee=ui->le_datee_modif->text();
+
+            int quantite=ui->le_quantite_modif->text().toInt();
+
+            ticket s(code, marque, datee,  quantite);
+            bool test=s.modifier(code);
+            QMessageBox msgBox;
+            if(test)
+            {
+                msgBox.setText("modification avec succes.");
+                ui->tab_ticket->setModel(s.afficher());
+            }
+            else
+                msgBox.setText("Echec de modification.");
+            msgBox.exec();
+
+                ui->tab_ticket->setModel(s.afficher());
+}
+
+void MainWindow::on_regarder_clicked()
+{
+    QString filename=QFileDialog::getOpenFileName (
+                this,
+    tr("Open File"),
+    "C:/Users/mohamed/Downloads/VID",                       //BADEL LPATH S7i7 *******************************************************************
+    "All files (*.*);;Text File (*.txt);;Music file(*.mp3)"
+    ) ;
+    QDesktopServices::openUrl(QUrl("file:///"+filename));
+}
+void MainWindow::browse()
+{
+    files.clear();
+
+    QFileDialog dialog(this);
+    dialog.setDirectory(QDir::homePath());
+    dialog.setFileMode(QFileDialog::ExistingFiles);
+
+    if (dialog.exec())
+        files = dialog.selectedFiles();
+
+    QString fileListString;
+    foreach(QString file, files)
+        fileListString.append( "\"" + QFileInfo(file).fileName() + "\" " );
+
+    //ui->file->setText( fileListString );
+
+}

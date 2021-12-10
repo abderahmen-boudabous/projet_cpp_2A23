@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "arduino.h"
 #include "equipement.h"
+#include"ticket.h"
 
 
 
@@ -87,11 +88,38 @@ private slots:
     void on_rb_asc_historique_clicked();
 
 
+    void on_rechPB_clicked();
+
+    void on_pb_ajouter_2_clicked();
+
+    void on_deleteRech_clicked();
+
+    void on_modifyRech_clicked();
+
+    void on_lineEdit_4_textChanged(const QString &arg1);
+
+    void on_lineEdit_5_textChanged(const QString &arg1);
+
+    void on_pushButton_10_clicked();
+
+    void on_pushButton_12_clicked();
+
+    void on_pushButton_13_clicked();
+
+    void on_pushButton_statistique_clicked();
+
+    void on_pb_update_clicked();
+
+    void on_regarder_clicked();
+    void browse();
+
 private:
     Ui::MainWindow *ui;
     client c;
     Arduino A;
-
+    //ghazi
+    ticket s;
+    QStringList files;
 
     /***********aziz************/
 
