@@ -25,11 +25,11 @@
 #include <QtCharts/QBarSeries>
 #include <QtCharts/QBarSet>
 #include <QtCharts/QLegend>
-#include <QtCharts>
+//#include <QtCharts>
 #include <QtCharts/QPieSeries>
 #include <QtCharts/QPieSlice>
-#include <QPieSlice>
-#include <QPieSeries>
+//#include <QPieSlice>
+//#include <QPieSeries>
 #include <QtCharts/QChartView>
 #include <QtCharts/QChartView>
 #include "equipement.h"
@@ -757,8 +757,8 @@ void MainWindow::on_rechPB_clicked()
                 code=ui->leRech->text().toInt();
 
 
-                query.prepare("SELECT * FROM ticket WHERE id =:id " );
-                query.bindValue(":id", code);
+                query.prepare("SELECT * FROM ticket WHERE id_t =:id_t " );
+                query.bindValue(":id_t", code);
                 query.exec();
 
 
@@ -886,11 +886,11 @@ void MainWindow::on_pb_ajouter_2_clicked()
      query.next();
      int q=query.value(0).toInt();
      QString nom=query.value(0).toString();
-     if(q<=6)
+    /* if(q<=6)
      {
         notification1 n;
         n.notification_system();
-     }
+     } */
 }
 
 void MainWindow::on_deleteRech_clicked()
@@ -961,7 +961,7 @@ void MainWindow::on_pushButton_13_clicked()
     ui->tab_ticket->setModel(s.trie());
 
 }
-
+/*
 void MainWindow::on_pushButton_statistique_clicked()
 {
     QSqlQueryModel * model= new QSqlQueryModel();
@@ -1009,7 +1009,7 @@ void MainWindow::on_pushButton_statistique_clicked()
                             chartView->resize(1000,500);
                             chartView->show();
 }
-
+*/
 void MainWindow::on_pb_update_clicked()
 {
     int code=ui->le_code_modif->text().toInt();
@@ -1038,7 +1038,7 @@ void MainWindow::on_regarder_clicked()
     QString filename=QFileDialog::getOpenFileName (
                 this,
     tr("Open File"),
-    "C:/Users/mohamed/Downloads/VID",                       //BADEL LPATH S7i7 *******************************************************************
+    "C:/Users/MSI/Desktop/video",                       //BADEL LPATH S7i7 *******************************************************************
     "All files (*.*);;Text File (*.txt);;Music file(*.mp3)"
     ) ;
     QDesktopServices::openUrl(QUrl("file:///"+filename));
@@ -1060,4 +1060,10 @@ void MainWindow::browse()
 
     //ui->file->setText( fileListString );
 
+}
+
+void MainWindow::on_pushButton_log_clicked()
+{
+    ge=new gestion_employer(this);
+    ge->show();
 }

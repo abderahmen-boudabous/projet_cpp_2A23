@@ -19,7 +19,7 @@ etat="";
 
 prix=0;
 }
-ticket::ticket(int id ,QString type,QString etat,     int prix)//parameter constructor
+ticket::ticket(int id ,QString type,QString etat,int prix)//parameter constructor
 {
     this->id=id;
     this->type=type;
@@ -37,9 +37,9 @@ bool ticket::ajouter()
             id_string=QString::number(id);
     QString prixString=QString::number(prix);
 
-    query.prepare("INSERT INTO ticket(id,type, etat , prix)"
+    query.prepare("INSERT INTO ticket(id_t,type, etat , prix)"
                   "VALUES (:id, :type, :etat, :prix)");
-    query.bindValue(":id",id_string);
+    query.bindValue(":id_t",id_string);
     query.bindValue(":type",type);
     query.bindValue(":etat",etat);
     query.bindValue(":prix",prixString);
@@ -53,7 +53,7 @@ QSqlQueryModel* ticket::afficher()
     QSqlQueryModel* model=new QSqlQueryModel();
 
           model->setQuery("SELECT* from ticket");
-          model->setHeaderData(0, Qt::Horizontal, QObject::tr("id"));
+          model->setHeaderData(0, Qt::Horizontal, QObject::tr("id_t"));
           model->setHeaderData(1, Qt::Horizontal, QObject::tr("type "));
           model->setHeaderData(2, Qt::Horizontal, QObject::tr("etat"));
           model->setHeaderData(3, Qt::Horizontal, QObject::tr("prix"));
@@ -68,15 +68,15 @@ bool ticket::supprimer(int id)
     bool test=rech(id);
     QSqlQuery query;
 
-    query.prepare("Delete from ticket where id= :id");
-    query.bindValue(":id",id);
+    query.prepare("Delete from ticket where id_t= :id_t");
+    query.bindValue(":id_t",id);
      query.exec();
      return test;
 }
 bool ticket::rech(int id)
 {
     QString ide=QString::number(id);
-    QSqlQuery q("select * from ticket where id="+ide);
+    QSqlQuery q("select * from ticket where id_t="+ide);
     return q.next();
 }
 bool ticket::modifier(int id)
@@ -85,8 +85,8 @@ QSqlQuery query;
 
 
 
-    query.prepare("update ticket set type=:type, etat=:etat, prix=:prix where id=:id");
-      query.bindValue(":id",id);
+    query.prepare("update ticket set type=:type, etat=:etat, prix=:prix where id_t=:id_t");
+      query.bindValue(":id_t",id);
     query.bindValue(":type",type);
     query.bindValue(":prix",prix);
     query.bindValue(":etat",etat);
@@ -108,8 +108,8 @@ void ticket::chercherticket(int critere)
 
     if(critere==1)
     {
-        query.prepare("SELECT * FROM ticket WHERE id =:id" );
-        query.bindValue(":id", id);
+        query.prepare("SELECT * FROM ticket WHERE id_t =:id_t" );
+        query.bindValue(":id_t", id);
         query.exec();
 
 
@@ -132,8 +132,8 @@ QSqlQueryModel *ticket::recherchercode(QString q)
 {
      QString res= QString::number(id);
      QSqlQueryModel *model=new QSqlQueryModel();
-      model->setQuery("SELECT * FROM ticket  WHERE  id like '%"+q+"%'" );
-      model->setHeaderData(0, Qt::Horizontal, QObject::tr("id"));
+      model->setQuery("SELECT * FROM ticket  WHERE  id_t like '%"+q+"%'" );
+      model->setHeaderData(0, Qt::Horizontal, QObject::tr("id_t"));
       model->setHeaderData(1, Qt::Horizontal, QObject::tr("type"));
       model->setHeaderData(2, Qt::Horizontal, QObject::tr("etat"));
       model->setHeaderData(4, Qt::Horizontal, QObject::tr("prix"));
@@ -146,7 +146,7 @@ QSqlQueryModel *ticket::recherchertype(QString q)
      QString res=type;
      QSqlQueryModel *model=new QSqlQueryModel();
       model->setQuery("SELECT * FROM ticket  WHERE type like '%"+q+"%'" );
-      model->setHeaderData(0, Qt::Horizontal, QObject::tr("id"));
+      model->setHeaderData(0, Qt::Horizontal, QObject::tr("id_t"));
       model->setHeaderData(1, Qt::Horizontal, QObject::tr("type"));
       model->setHeaderData(2, Qt::Horizontal, QObject::tr("etat"));
       model->setHeaderData(3, Qt::Horizontal, QObject::tr("prix"));
@@ -158,8 +158,8 @@ QSqlQueryModel *ticket::recherchertype(QString q)
 QSqlQueryModel * ticket::tri()
 {
     QSqlQueryModel * model =new QSqlQueryModel();
-    model->setQuery("SELECT * FROM ticket ORDER BY CAST (id AS number) ");
-    model->setHeaderData(0, Qt::Horizontal, QObject::tr("id"));
+    model->setQuery("SELECT * FROM ticket ORDER BY CAST (id_t AS number) ");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("id_t"));
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("type"));
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("etat"));
     model->setHeaderData(3, Qt::Horizontal, QObject::tr("prix."));
@@ -171,7 +171,7 @@ QSqlQueryModel * ticket::trim()
 {
     QSqlQueryModel * model =new QSqlQueryModel();
     model->setQuery("SELECT * FROM ticket  ORDER BY type ASC ");
-    model->setHeaderData(0, Qt::Horizontal, QObject::tr("id"));
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("id_t"));
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("type"));
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("etat"));
     model->setHeaderData(3, Qt::Horizontal, QObject::tr("prix"));
@@ -183,7 +183,7 @@ QSqlQueryModel * ticket::trie()
 {
     QSqlQueryModel * model =new QSqlQueryModel();
    model->setQuery("SELECT * FROM ticket ORDER BY CAST (prix AS number) ");
-    model->setHeaderData(0, Qt::Horizontal, QObject::tr("id"));
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("id_t"));
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("type"));
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("etat"));
     model->setHeaderData(3, Qt::Horizontal, QObject::tr("prix"));

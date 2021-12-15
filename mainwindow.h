@@ -6,7 +6,7 @@
 #include "equipement.h"
 #include"ticket.h"
 
-
+#include"gestion_employer.h"
 
 
 namespace Ui {
@@ -113,10 +113,14 @@ private slots:
     void on_regarder_clicked();
     void browse();
 
+    void on_pushButton_log_clicked();
+
 private:
     Ui::MainWindow *ui;
     client c;
     Arduino A;
+
+
     //ghazi
     ticket s;
     QStringList files;
@@ -127,7 +131,7 @@ private:
     Equipement E;
     Equipement E2;
 
-
+gestion_employer *ge;
 
 
 };

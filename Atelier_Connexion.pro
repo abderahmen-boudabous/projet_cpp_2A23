@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql serialport
+QT       += core gui sql serialport charts multimedia multimediawidgets
 QT       += network
 
 QT += widgets
@@ -16,7 +16,7 @@ QT += printsupport
 
 
 
-
+QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Atelier_Connexion
@@ -38,21 +38,30 @@ CONFIG += c++11
 SOURCES += \
     arduino.cpp \
     client.cpp \
+    employer.cpp \
     equipement.cpp \
+    exportexcelobject.cpp \
+    gestion_employer.cpp \
         main.cpp \
         mainwindow.cpp \
     connection.cpp \
-    notification.cpp
+    notification.cpp \
+    ticket.cpp
 
 HEADERS += \
     arduino.h \
     client.h \
+    employer.h \
     equipement.h \
+    exportexcelobject.h \
+    gestion_employer.h \
         mainwindow.h \
     connection.h \
-    notification.h
+    notification.h \
+    ticket.h
 
 FORMS += \
+        gestion_employer.ui \
         mainwindow.ui
 
 # Default rules for deployment.

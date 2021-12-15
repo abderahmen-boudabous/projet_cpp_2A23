@@ -1,0 +1,16 @@
+INPUT(
+./debug\arduino.o
+./debug\client.o
+./debug\employer.o
+./debug\equipement.o
+./debug\exportexcelobject.o
+./debug\gestion_employer.o
+./debug\main.o
+./debug\mainwindow.o
+./debug\connection.o
+./debug\notification.o
+./debug\ticket.o
+./debug\moc_exportexcelobject.o
+./debug\moc_gestion_employer.o
+./debug\moc_mainwindow.o
+);

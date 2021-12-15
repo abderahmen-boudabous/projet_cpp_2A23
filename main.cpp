@@ -3,7 +3,7 @@
 #include <QMessageBox>
 #include "client.h"
 #include "connection.h"
-
+#include"gestion_employer.h"
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

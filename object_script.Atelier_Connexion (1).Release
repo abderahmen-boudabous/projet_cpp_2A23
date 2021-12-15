@@ -1,0 +1,16 @@
+INPUT(
+./release\arduino.o
+./release\client.o
+./release\employer.o
+./release\equipement.o
+./release\exportexcelobject.o
+./release\gestion_employer.o
+./release\main.o
+./release\mainwindow.o
+./release\connection.o
+./release\notification.o
+./release\ticket.o
+./release\moc_exportexcelobject.o
+./release\moc_gestion_employer.o
+./release\moc_mainwindow.o
+);

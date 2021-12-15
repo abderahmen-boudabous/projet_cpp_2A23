@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1506</width>
-    <height>1004</height>
+    <width>1341</width>
+    <height>854</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab_7">
      <attribute name="title">
@@ -54,7 +54,7 @@
 </string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -252,7 +252,7 @@
            <x>-30</x>
            <y>-40</y>
            <width>1381</width>
-           <height>801</height>
+           <height>831</height>
           </rect>
          </property>
          <property name="text">
@@ -1155,6 +1155,68 @@
      <attribute name="title">
       <string>Page</string>
      </attribute>
+     <widget class="QPushButton" name="pushButton_log">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>520</y>
+        <width>251</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Login</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_74">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>170</y>
+        <width>131</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>User Name</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_75">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>300</y>
+        <width>131</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PWD</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_usn">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>170</y>
+        <width>241</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_pwd">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>300</y>
+        <width>241</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_ghazi">
      <attribute name="title">
@@ -1173,7 +1235,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_add">
        <property name="enabled">
@@ -1984,7 +2046,7 @@
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap>../../Downloads/téléchargé.jpg</pixmap>
+         <pixmap>../téléchargé.jpg</pixmap>
         </property>
        </widget>
       </widget>
@@ -2776,8 +2838,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1506</width>
-     <height>25</height>
+     <width>1341</width>
+     <height>26</height>
     </rect>
    </property>
   </widget>
